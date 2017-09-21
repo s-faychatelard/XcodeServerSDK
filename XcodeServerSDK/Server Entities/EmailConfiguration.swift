@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class EmailConfiguration : XcodeServerEntity {
+open class EmailConfiguration : XcodeServerEntity {
     
-    public let additionalRecipients: [String]
-    public let emailCommitters: Bool
-    public let includeCommitMessages: Bool
-    public let includeIssueDetails: Bool
+    open let additionalRecipients: [String]
+    open let emailCommitters: Bool
+    open let includeCommitMessages: Bool
+    open let includeIssueDetails: Bool
     
     public init(additionalRecipients: [String], emailCommitters: Bool, includeCommitMessages: Bool, includeIssueDetails: Bool) {
         
@@ -25,7 +25,7 @@ public class EmailConfiguration : XcodeServerEntity {
         super.init()
     }
     
-    public override func dictionarify() -> NSDictionary {
+    open override func dictionarify() -> NSDictionary {
         
         let dict = NSMutableDictionary()
         

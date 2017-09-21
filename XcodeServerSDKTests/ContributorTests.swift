@@ -11,7 +11,7 @@ import XCTest
 
 class ContributorTests: XCTestCase {
 
-    let singleEmailContributor = [
+    let singleEmailContributor: NSDictionary = [
         kContributorName: "Foo Bar",
         kContributorDisplayName: "Foo",
         kContributorEmails: [
@@ -19,7 +19,7 @@ class ContributorTests: XCTestCase {
         ]
     ]
     
-    let multiEmailContributor = [
+    let multiEmailContributor: NSDictionary = [
         kContributorName: "Baz Bar",
         kContributorDisplayName: "Baz",
         kContributorEmails: [

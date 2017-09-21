@@ -23,7 +23,7 @@ class XcodeServerConfigTests: XCTestCase {
     }
     
     func testInvalidHostProvidingForManualInit() {
-        XCTempAssertThrowsSpecificError(ConfigurationErrors.InvalidHostProvided("Invalid host name provided, please double check your host name")) {
+        XCTempAssertThrowsSpecificError(ConfigurationErrors.invalidHostProvided("Invalid host name provided, please double check your host name")) {
             _ = try XcodeServerConfig(host: "<>127.0.0.1", user: "ICanCreateBots", password: "superSecr3t")
         }
     }
@@ -50,13 +50,13 @@ class XcodeServerConfigTests: XCTestCase {
             "password": "superSecr3t"
         ]
         
-        XCTempAssertThrowsSpecificError(ConfigurationErrors.NoHostProvided) {
+        XCTempAssertThrowsSpecificError(ConfigurationErrors.noHostProvided) {
             _ = try XcodeServerConfig(json: json)
         }
     }
     
     func testInvalidSchemeProvided() {
-        XCTempAssertThrowsSpecificError(ConfigurationErrors.InvalidSchemeProvided("Xcode Server generally uses https, please double check your hostname")) {
+        XCTempAssertThrowsSpecificError(ConfigurationErrors.invalidSchemeProvided("Xcode Server generally uses https, please double check your hostname")) {
             _ = try XcodeServerConfig(host: "http://127.0.0.1")
         }
     }
@@ -71,13 +71,13 @@ class XcodeServerConfigTests: XCTestCase {
                 "id": "12345"
             ]
             
-            XCTAssertEqual(config.jsonify(), expected)
+            XCTAssertEqual(config.jsonify() as! [String: String], expected)
         }
     }
     
     //just to have a perf test
     func testPerformance() {
-        self.measureBlock { () -> Void in
+        self.measure { () -> Void in
             _ = try! XcodeServerConfig(host: "127.0.0.1", user: "ICanCreateBots", password: "superSecr3t")
         }
     }
