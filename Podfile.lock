@@ -1,31 +1,21 @@
 PODS:
   - BuildaUtils (0.4.1):
     - SwiftSafe (~> 2.0.1)
-  - DVR (0.3)
-  - Nimble (7.0.1)
+  - DVR (1.1.0)
+  - Nimble (7.0.2)
   - SwiftSafe (2.0.1)
 
 DEPENDENCIES:
   - BuildaUtils (~> 0.4.1)
-  - DVR (~> 0.3)
-  - Nimble (from `https://github.com/Quick/Nimble.git`, commit `a63252b16eba6cdebec4e4936388c90552165a68`)
-
-EXTERNAL SOURCES:
-  Nimble:
-    :commit: a63252b16eba6cdebec4e4936388c90552165a68
-    :git: https://github.com/Quick/Nimble.git
-
-CHECKOUT OPTIONS:
-  Nimble:
-    :commit: a63252b16eba6cdebec4e4936388c90552165a68
-    :git: https://github.com/Quick/Nimble.git
+  - DVR (~> 1.1.0)
+  - Nimble (~> 7.0.2)
 
 SPEC CHECKSUMS:
   BuildaUtils: b8c8f7b6a57a294cfcc7d434b55e526520fa76c5
-  DVR: cfa5b9d7c4efc169857df715d9f7c6cd28559d8b
-  Nimble: 1b6670c36e5750169b9e4cc2e9cfa82a7603c69e
+  DVR: f785f86273f7a3a94335acf44611ac2cbf5920f9
+  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   SwiftSafe: bd14d81b4e458790796e089af07ae740147dc6f3
 
-PODFILE CHECKSUM: 6dc10144477d917bdb3f93324965aa45e3182181
+PODFILE CHECKSUM: d365e94ef557de16716e6a1a6eafdfd01ef630b7
 
 COCOAPODS: 1.3.1

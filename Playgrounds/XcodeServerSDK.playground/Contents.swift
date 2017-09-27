@@ -2,7 +2,7 @@
 
 import Foundation
 import XcodeServerSDK
-import XCPlayground
+import PlaygroundSupport
 
 let serverConfig = try! XcodeServerConfig(host: "https://127.0.0.1", user: "MacUser", password: "Secr3t")
 
@@ -14,4 +14,4 @@ server.getBots { (bots, error) -> () in
     print(bots)
 }
 
-XCPSetExecutionShouldContinueIndefinitely(true)
+PlaygroundSupport.PlaygroundPage.current.needsIndefiniteExecution = true

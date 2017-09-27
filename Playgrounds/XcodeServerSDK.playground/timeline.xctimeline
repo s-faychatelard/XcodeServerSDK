@@ -3,7 +3,12 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=0&amp;CharacterRangeLoc=263&amp;EndingColumnNumber=18&amp;EndingLineNumber=23&amp;StartingColumnNumber=5&amp;StartingLineNumber=23&amp;Timestamp=465081472.171235"
+         documentLocation = "file:///Users/sylvain/Git/Buildasaurs/XcodeServerSDK/Playgrounds/XcodeServerSDK.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=264&amp;EndingColumnNumber=37&amp;EndingLineNumber=8&amp;StartingColumnNumber=37&amp;StartingLineNumber=8&amp;Timestamp=528204586.346655"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/sylvain/Git/Buildasaurs/XcodeServerSDK/Playgrounds/XcodeServerSDK.playground#CharacterRangeLen=11&amp;CharacterRangeLoc=342&amp;EndingColumnNumber=10&amp;EndingLineNumber=13&amp;StartingColumnNumber=16&amp;StartingLineNumber=12&amp;Timestamp=528204586.346788"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>

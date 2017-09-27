@@ -8,8 +8,8 @@ def utils
 end
 
 def tests
-    pod 'DVR', '~> 0.3'
-    pod 'Nimble', :git => 'https://github.com/Quick/Nimble.git', :commit => 'a63252b16eba6cdebec4e4936388c90552165a68'
+    pod 'DVR', '~> 1.1.0'
+    pod 'Nimble', '~> 7.0.2'
 end
 
 target 'XcodeServerSDK' do

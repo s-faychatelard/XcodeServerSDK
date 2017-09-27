@@ -88,9 +88,23 @@ open class BotConfiguration : XcodeServerEntity {
         case useSchemeSetting
     }
     
+    /**
+     Struct describing provisioning config preference. Xcode 9 API allows for overriding a config setup in the scheme for a specific one. false is the default.
+     */
+    public struct ProvisioningConfiguration {
+        let addMissingDevicesToTeams: Bool
+        let manageCertsAndProfiles: Bool
+
+        public init(addMissingDevicesToTeams: Bool, manageCertsAndProfiles: Bool) {
+            self.addMissingDevicesToTeams = addMissingDevicesToTeams
+            self.manageCertsAndProfiles = manageCertsAndProfiles
+        }
+    }
+    
     open let builtFromClean: CleaningPolicy
     open let codeCoveragePreference: CodeCoveragePreference
     open let buildConfiguration: BuildConfiguration
+    open let provisioningConfiguration: ProvisioningConfiguration
     open let analyze: Bool
     open let test: Bool
     open let archive: Bool
@@ -121,6 +135,14 @@ open class BotConfiguration : XcodeServerEntity {
         } else {
             self.buildConfiguration = .useSchemeSetting
         }
+        
+        if let provisioningConfiguration = json.optionalDictionaryForKey("provisioningConfiguration") {
+            self.provisioningConfiguration = ProvisioningConfiguration(addMissingDevicesToTeams: try! provisioningConfiguration.boolForKey("addMissingDevicesToTeams"),
+                                                                       manageCertsAndProfiles: try! provisioningConfiguration.boolForKey("manageCertsAndProfiles"))
+        } else {
+            self.provisioningConfiguration = ProvisioningConfiguration(addMissingDevicesToTeams: false, manageCertsAndProfiles: false)
+        }
+
         self.analyze = try json.boolForKey("performsAnalyzeAction")
         self.archive = try json.boolForKey("performsArchiveAction")
         self.exportsProductFromArchive = json.optionalBoolForKey("exportsProductFromArchive") ?? false
@@ -148,6 +170,7 @@ open class BotConfiguration : XcodeServerEntity {
         builtFromClean: CleaningPolicy,
         codeCoveragePreference: CodeCoveragePreference = .useSchemeSetting,
         buildConfiguration: BuildConfiguration = .useSchemeSetting,
+        provisioningConfiguration: ProvisioningConfiguration = ProvisioningConfiguration(addMissingDevicesToTeams: false, manageCertsAndProfiles: false),
         analyze: Bool,
         test: Bool,
         archive: Bool,
@@ -161,6 +184,7 @@ open class BotConfiguration : XcodeServerEntity {
             self.builtFromClean = builtFromClean
             self.codeCoveragePreference = codeCoveragePreference
             self.buildConfiguration = buildConfiguration
+            self.provisioningConfiguration = provisioningConfiguration
             self.analyze = analyze
             self.test = test
             self.archive = archive
@@ -196,6 +220,11 @@ open class BotConfiguration : XcodeServerEntity {
         if case .overrideWithSpecific(let buildConfig) = self.buildConfiguration {
             dictionary["buildConfiguration"] = buildConfig
         }
+        
+        dictionary["provisioningConfiguration"] = [
+            "addMissingDevicesToTeams": self.provisioningConfiguration.addMissingDevicesToTeams,
+            "manageCertsAndProfiles": self.provisioningConfiguration.manageCertsAndProfiles
+        ]
         
         let botScheduleDict = self.schedule.dictionarify() //needs to be merged into the main bot config dict
         dictionary.addEntries(from: botScheduleDict as! [AnyHashable: Any])

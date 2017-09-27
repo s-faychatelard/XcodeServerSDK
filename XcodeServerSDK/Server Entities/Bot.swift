@@ -13,9 +13,11 @@ open class Bot : XcodeServerEntity {
     open let name: String
     open let configuration: BotConfiguration
     open let integrationsCount: Int
+    open let json: NSDictionary?
 
     public required init(json: NSDictionary) throws {
         
+        self.json = json
         self.name = try json.stringForKey("name")
         self.configuration = try BotConfiguration(json: try json.dictionaryForKey("configuration"))
         self.integrationsCount = json.optionalIntForKey("integration_counter") ?? 0
@@ -28,6 +30,7 @@ open class Bot : XcodeServerEntity {
     */
     public init(name: String, configuration: BotConfiguration) {
         
+        self.json = nil
         self.name = name
         self.configuration = configuration
         self.integrationsCount = 0
@@ -46,7 +49,7 @@ open class Bot : XcodeServerEntity {
         dictionary["configuration"] = self.configuration.dictionarify()
         
         //others
-        dictionary["type"] = 1 //magic more
+        dictionary["type"] = 1 // magic more
         dictionary["requiresUpgrade"] = false
         dictionary["group"] = [
             "name": UUID().uuidString
@@ -61,7 +64,7 @@ open class Bot : XcodeServerEntity {
 extension Bot : CustomStringConvertible {
     public var description : String {
         get {
-            return "[Bot \(self.name)]"
+            return "[Bot \(self.name), \(self.json ?? [:])]"
         }
     }
 }
