@@ -35,6 +35,8 @@ open class IntegrationIssue: XcodeServerEntity {
     open let issueType: String
     open let commits: [Commit]
     open let integrationID: String
+    open let documentFilePath: String?
+    open let lineNumber: Int?
     open let age: Int
     open let status: IssueStatus
     
@@ -47,6 +49,8 @@ open class IntegrationIssue: XcodeServerEntity {
         self.issueType = try json.stringForKey("issueType")
         self.commits = try json.arrayForKey("commits").map { try Commit(json: $0) }
         self.integrationID = try json.stringForKey("integrationID")
+        self.documentFilePath = try json.optionalStringForKey("documentFilePath")
+        self.lineNumber = try json.optionalIntForKey("lineNumber")
         self.age = try json.intForKey("age")
         self.status = IssueStatus(rawValue: try json.intForKey("status"))!
         
